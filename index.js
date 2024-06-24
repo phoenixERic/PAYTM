@@ -1,11 +1,14 @@
-// backend/user/index.js
-const express = require('express');
-const userRouter = require("./user");
-const accountRouter = require("./account");
+const express = require("express");
+const mainrouter=require("./routes/index.js");
+const userrouter=require("./routes/user.js");
+const cors=require("cors")
+const app=express();
+app.use(cors)
+app.use(express.json)  
 
-const router = express.Router();
 
-router.use("/user", userRouter);
-router.use("/account", accountRouter);
+app.use("/api/v1",mainrouter); 
+   //ALL REQUESTS WHICH COME TO /API/V1 GOES TO MAIN ROUTER 
 
-module.exports = router;
+
+   app.listen(3000)
